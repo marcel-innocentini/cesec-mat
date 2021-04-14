@@ -24,10 +24,9 @@ require_once("../conexao.php");
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>Cadastro</th>
                         <th>Telefone</th>
-                        <th>Email</th>
-                        <th>CPF</th>
-                        <th>Foto</th>
+                        <th>Email</th>                                           
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -44,11 +43,9 @@ require_once("../conexao.php");
                   }
 
                   $nome = $res[$i]['nome'];
+                  $cadastro = $res[$i]['cadastro'];
                   $telefone = $res[$i]['telefone'];
-                  $email = $res[$i]['email'];
-                  $endereco = $res[$i]['endereco'];
-                  $cpf = $res[$i]['cpf'];
-                  $foto = $res[$i]['foto'];
+                  $email = $res[$i]['email'];                  
                   $id = $res[$i]['id'];
 
 
@@ -57,17 +54,16 @@ require_once("../conexao.php");
 
                   <tr>
                     <td><?php echo $nome ?></td>
+                    <td><?php echo $cadastro ?></td>
                     <td><?php echo $telefone ?></td>
-                    <td><?php echo $email ?></td>
-                    <td><?php echo $cpf ?></td>
-                    <td><img src="../img/alunos/<?php echo $foto ?>" width="50"></td>
+                    <td><?php echo $email ?></td>                  
+                    
 
 
                     <td>
                        <a href="index.php?pag=<?php echo $pag ?>&funcao=editar&id=<?php echo $id ?>" class='text-primary mr-1' title='Editar Dados'><i class='far fa-edit'></i></a>
                        <a href="index.php?pag=<?php echo $pag ?>&funcao=excluir&id=<?php echo $id ?>" class='text-danger mr-1' title='Excluir Registro'><i class='far fa-trash-alt'></i></a>
-
-                       <a href="index.php?pag=<?php echo $pag ?>&funcao=endereco&id=<?php echo $id ?>" class='text-info mr-1' title='Ver Endereço'><i class='fas fa-home'></i></a>
+                       
                    </td>
                </tr>
            <?php } ?>
@@ -88,7 +84,7 @@ require_once("../conexao.php");
 
 <!-- Modal -->
 <div class="modal fade" id="modalDados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <?php 
@@ -100,13 +96,10 @@ require_once("../conexao.php");
                     $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
                     $nome2 = $res[0]['nome'];
+                    $cadastro2 = $res[0]['cadastro'];
                     $telefone2 = $res[0]['telefone'];
-                    $email2 = $res[0]['email'];
-                    $endereco2 = $res[0]['endereco'];
-                    $cpf2 = $res[0]['cpf'];
-                    $foto2 = $res[0]['foto'];
-                    $data_nasc2 = $res[0]['data_nascimento'];
-                    $sexo2 = $res[0]['sexo'];
+                    $email2 = $res[0]['email'];                    
+                    
 
                 } else {
                     $titulo = "Inserir Registro";
@@ -124,10 +117,10 @@ require_once("../conexao.php");
             <form id="form" method="POST">
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
 
                            <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
 
                                 <div class="form-group">
                                     <label >Nome</label>
@@ -136,89 +129,33 @@ require_once("../conexao.php");
 
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label >Email</label>
-                                    <input value="<?php echo @$email2 ?>" type="text" class="form-control" id="email" name="email" placeholder="Email">
+                                    <label >Cadastro</label>
+                                    <input value="<?php echo @$cadastro2 ?>" type="text" class="form-control" id="cadastro" name="cadastro" placeholder="Cadastro">
                                 </div>
 
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                <div class="form-group">
-                                <label >CPF</label>
-                                <input value="<?php echo @$cpf2 ?>" type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF">
+                                <label >Telefone</label>
+                                <input value="<?php echo @$telefone2 ?>" type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone">
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                            <div class="form-group">
-                            <label >Telefone</label>
-                            <input value="<?php echo @$telefone2 ?>" type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone">
+                            <label >Email</label>
+                            <input value="<?php echo @$email2 ?>" type="text" class="form-control" id="email" name="email" placeholder="Email">
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-9">
-
-                        <div class="form-group">
-                            <label >Endereço</label>
-                            <input value="<?php echo @$endereco2 ?>" type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço">
-                        </div>  
-                    </div>
-
-                    <div class="col-md-3">
-                       <div class="form-group">
-                        <label >Sexo</label>
-                        <select name="sexo" class="form-control" id="sexo">
-                            <option <?php if(@$sexo2 == 'M'){ ?> selected <?php } ?> value="M">M</option>
-                            <option <?php if(@$tipo_pessoa2 == 'F'){ ?> selected <?php } ?> value="F">F</option>
-
-                        </select>
-                    </div>
-                </div>
             </div>
-
-
-            <div class="row">
-                <div class="col-md-6">
-                 <div class="form-group">
-                    <label >Data Nascimento</label>
-                    <input value="<?php echo @$data_nasc2 ?>" type="date" class="form-control" id="data_nasc" name="data_nasc" placeholder="CPF">
-                </div>
-            </div>
-
-            <div class="col-md-6">
-             <div class="form-group">
-                <label >CPF Responsável</label>
-                <input value="<?php echo @$responsavel2 ?>" type="text" class="form-control" id="cpf2" name="responsavel" placeholder="CPF do Responsável">
-            </div>
-        </div>
+              
     </div>
-
-</div>
-
-<div class="col-md-4">
-    <div class="form-group">
-        <label >Imagem</label>
-        <input type="file" value="<?php echo @$foto2 ?>"  class="form-control-file" id="imagem" name="imagem" onChange="carregarImg();">
-    </div>
-
-    <div id="divImgConta">
-        <?php if(@$foto2 != ""){ ?>
-            <img src="../img/alunos/<?php echo $foto2 ?>"  width="100%" id="target">
-        <?php  }else{ ?>
-            <img src="../img/alunos/sem-foto.jpg" width="100%" id="target">
-        <?php } ?>
-    </div>
-</div>
-</div>
-
-
-
 
 
 
@@ -237,9 +174,8 @@ require_once("../conexao.php");
 
 
     <input value="<?php echo @$_GET['id'] ?>" type="hidden" name="txtid2" id="txtid2">
-    <input value="<?php echo @$cpf2 ?>" type="hidden" name="antigo" id="antigo">
-    <input value="<?php echo @$email2 ?>" type="hidden" name="antigo2" id="antigo2">
-
+    <input value="<?php echo @$cadastro2 ?>" type="hidden" name="antigo" id="antigo">
+      
     <button type="button" id="btn-fechar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
     <button type="submit" name="btn-salvar" id="btn-salvar" class="btn btn-primary">Salvar</button>
 </div>
@@ -288,98 +224,6 @@ require_once("../conexao.php");
 
 
 
-
-<div class="modal" id="modal-endereco" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Dados do Aluno</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <?php 
-                if (@$_GET['funcao'] == 'endereco') {
-
-                    $id2 = $_GET['id'];
-
-                    $query = $pdo->query("SELECT * FROM alunos where id = '$id2' ");
-                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                    $nome3 = $res[0]['nome'];
-                    $cpf3 = $res[0]['cpf'];
-                    $telefone3 = $res[0]['telefone'];
-                    $email3 = $res[0]['email'];
-                    $endereco3 = $res[0]['endereco'];
-                    $foto3 = $res[0]['foto'];
-                    $data_nasc3 = $res[0]['data_nascimento'];
-                    $sexo3 = $res[0]['sexo'];
-                    $responsavel3 = $res[0]['responsavel'];
-
-                    $query_resp = $pdo->query("SELECT * FROM responsaveis where cpf = '$responsavel3' ");
-                    $res_resp = $query_resp->fetchAll(PDO::FETCH_ASSOC);
-                    $nome_resp = $res_resp[0]['nome'];
-                    $telefone_resp = $res_resp[0]['telefone'];
-                    $email_resp = $res_resp[0]['email'];
-
-                    $data_F = implode('/', array_reverse(explode('-', $data_nasc3)));
-                    
-                    //CALCULAR IDADE
-                    $date1 = $data_nasc3;
-                    $date2 = date('Y-m-d');
-                    $diff = abs(strtotime($date2) - strtotime($date1));
-                    $idade = floor($diff / (365*60*60*24));
-
-                    
-                } 
-
-
-                ?>
-
-                <div class="row">
-                    <div class="col-md-7">
-                        <span><b>Nome: </b> <i><?php echo $nome3 ?></i><br></span>
-                        <span><b>Telefone: </b> <i><?php echo $telefone3 ?></i></span> <span class="ml-4"><b>CPF: </b> <i><?php echo $cpf3 ?></i><br>
-                        </span><span><b>Email: </b> <i><?php echo $email3 ?><br></i></span>
-                    </span><span><b>Data de Nascimento: </b> <i><?php echo $data_F ?><br></i></span>
-
-                    <span><b>Sexo: </b> <i><?php echo $sexo3 ?></i> </span> <span class="ml-4"><b>Idade: </b> <i><?php echo $idade ?> Anos</i><br></span>
-
-                    <span><b>Endereço: </b> <i><?php echo $endereco3 ?><br></i></span>
-
-                    <?php if($responsavel3 != ""){ ?>
-                        <p class="mt-2"><i><u>Dados do Responsável</i></u></p>
-
-                        <span><b>Nome: </b> <i><?php echo $nome_resp ?></i><br></span>
-                        <span><b>Telefone: </b> <i><?php echo $telefone_resp ?></i></span> <span class="ml-4"><b>CPF: </b> <i><?php echo $responsavel3 ?></i><br>
-                        </span><span><b>Email: </b> <i><?php echo $email_resp ?><br></i></span>
-
-
-
-
-                    <?php } ?>
-                </div>
-
-                <div class="col-md-5">
-
-                    <img src="../img/alunos/<?php echo $foto3 ?>" width="100%">
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-    </div>
-</div>
-</div>
-
-
-
-
 <?php 
 
 if (@$_GET["funcao"] != null && @$_GET["funcao"] == "novo") {
@@ -392,10 +236,6 @@ if (@$_GET["funcao"] != null && @$_GET["funcao"] == "editar") {
 
 if (@$_GET["funcao"] != null && @$_GET["funcao"] == "excluir") {
     echo "<script>$('#modal-deletar').modal('show');</script>";
-}
-
-if (@$_GET["funcao"] != null && @$_GET["funcao"] == "endereco") {
-    echo "<script>$('#modal-endereco').modal('show');</script>";
 }
 
 ?>
@@ -486,33 +326,6 @@ if (@$_GET["funcao"] != null && @$_GET["funcao"] == "endereco") {
         })
     })
 </script>
-
-
-
-<!--SCRIPT PARA CARREGAR IMAGEM -->
-<script type="text/javascript">
-
-    function carregarImg() {
-
-        var target = document.getElementById('target');
-        var file = document.querySelector("input[type=file]").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function () {
-            target.src = reader.result;
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-
-
-        } else {
-            target.src = "";
-        }
-    }
-
-</script>
-
 
 
 

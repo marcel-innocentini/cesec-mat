@@ -4,12 +4,9 @@
 
     //variaveis para o menu
     $pag = @$_GET["pag"];
-    $menu1 = "alunos";
-    $menu2 = "responsaveis";
-    $menu3 = "turmas";
-    $menu4 = "funcionarios";
-    $menu5 = "disciplinas";
-    $menu6 = "salas";
+    $menu1 = "alunos";    
+    $menu3 = "turmas";    
+    $menu5 = "disciplinas";    
     $menu7 = "turmas";
 
  ?>
@@ -103,8 +100,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                            
                             <a class="collapse-item" href="index.php?pag=<?php echo $menu3 ?>">Turmas</a>
-                            <a class="collapse-item" href="index.php?pag=<?php echo $menu6 ?>">Salas</a>
-                            
+                                                        
 
                         </div>
                     </div>
@@ -177,22 +173,14 @@
                         } else if (@$pag==$menu1) {
                         @include_once(@$menu1.".php");
                         
-                        } else if (@$pag==$menu2) {
-                        @include_once(@$menu2.".php");
-
+                        
                          } else if (@$pag==$menu3) {
                         include_once(@$menu3.".php");
 
-                        } else if (@$pag==$menu4) {
-                        @include_once(@$menu4.".php");
-
+                        
                         } else if (@$pag==$menu5) {
                         @include_once(@$menu5.".php");
-
-                        } else if (@$pag==$menu6) {
-                        @include_once(@$menu6.".php");
-
-                       
+                                              
                         
                         } else {
                         @include_once("home.php");
