@@ -4,10 +4,13 @@
 
     //variaveis para o menu
     $pag = @$_GET["pag"];
-    $menu1 = "alunos";    
+    $menu1 = "alunos";   
+    $menu2 = "avaliacao";  
     $menu3 = "turmas";    
-    $menu5 = "disciplinas";    
-    $menu7 = "turmas";
+    $menu4 = "relatorios";      
+    $menu8 = "notas";
+    $menu9 = "frequencias";
+    $menu10 = "professores";
 
  ?>
 
@@ -24,7 +27,7 @@
         <meta name="description" content="">
         <meta name="author" content="Marcel Innocentini">
 
-        <title>Painel Secretaria</title>
+        <title>CESEC-Mat</title>
 
         <!-- Custom fonts for this template-->
         <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +60,7 @@
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
 
-                    <div class="sidebar-brand-text mx-3">Secretaria</div>
+                    <div class="sidebar-brand-text mx-3">Início</div>
                 </a>
 
                 <!-- Divider -->
@@ -87,11 +90,18 @@
                             
                              
                         </div>
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu10 ?>">Professores</a>
+                            
+                             
+                        </div>
                     </div>
                 </li>
 
                 <!-- Nav Item - Utilities Collapse Menu -->
                 <li class="nav-item">
+                    
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fas fa-home"></i>
                         <span>Turmas / Matrículas</span>
@@ -104,6 +114,43 @@
 
                         </div>
                     </div>
+                   
+                    
+                </li>
+                <li class="nav-item">
+                
+               
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-rocket"></i>
+                        <span>Lançamentos</span>
+                    </a>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                           
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu2 ?>">Avaliações</a>
+                                                        
+
+                        </div>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                           
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu8 ?>">Notas</a>
+                                                        
+
+                        </div>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                           
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu9 ?>">Frequências</a>
+                                                        
+
+                        </div>
+                    </div>
+                    
                 </li>
 
                 <!-- Divider -->
@@ -118,10 +165,11 @@
 
                 <!-- Nav Item - Charts -->
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?pag=<?php echo $menu6 ?>">
+                    <a class="nav-link" href="index.php?pag=<?php echo $menu4 ?>">
                         <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Menu 6</span></a>
+                        <span>Relatórios</span></a>
                 </li>
+                
 
                 <!-- Nav Item - Tables -->
               
@@ -172,14 +220,24 @@
                         
                         } else if (@$pag==$menu1) {
                         @include_once(@$menu1.".php");
+
+                        } else if (@$pag==$menu2) {
+                        @include_once(@$menu2.".php");   
                         
-                        
-                         } else if (@$pag==$menu3) {
+                        } else if (@$pag==$menu3) {
                         include_once(@$menu3.".php");
 
+                        } else if (@$pag==$menu4) {
+                        include_once(@$menu4.".php");
                         
-                        } else if (@$pag==$menu5) {
-                        @include_once(@$menu5.".php");
+                        } else if (@$pag==$menu8) {
+                        @include_once(@$menu8.".php");
+
+                        } else if (@$pag==$menu9) {
+                        @include_once(@$menu9.".php");
+
+                        } else if (@$pag==$menu10) {
+                        @include_once(@$menu10.".php");
                                               
                         
                         } else {

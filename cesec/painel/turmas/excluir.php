@@ -3,11 +3,13 @@ require_once("../../conexao.php");
 
 $id = $_POST['id'];
 
-$query = $pdo->query("SELECT * FROM alunos where id = '$id' ");
+$query = $pdo->query("SELECT * FROM matriculas where turma = '$id' ");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
+
 if($total_reg > 0){
-	 echo 'Ainda há alunos matriculados nesta turma. Exclua-os antes de concluir!';
+	
+	echo 'Ainda há alunos matriculados nesta turma. Exclua-os antes de concluir!';
 	exit();
 }else{
 
@@ -15,5 +17,4 @@ if($total_reg > 0){
 
 echo 'Excluído com Sucesso!';
 }
-
 ?>

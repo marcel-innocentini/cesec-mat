@@ -1,5 +1,5 @@
 <?php 
-$pag = "alunos";
+$pag = "professores";
 require_once("../conexao.php"); 
 
 @session_start();
@@ -8,7 +8,7 @@ require_once("../conexao.php");
 ?>
 
 <div class="row mt-4 mb-4">
-    <a type="button" class="btn-info btn-sm ml-3 d-none d-md-block" href="index.php?pag=<?php echo $pag ?>&funcao=novo">Novo Aluno</a>
+    <a type="button" class="btn-info btn-sm ml-3 d-none d-md-block" href="index.php?pag=<?php echo $pag ?>&funcao=novo">Novo Professor</a>
     <a type="button" class="btn-info btn-sm ml-3 d-block d-sm-none" href="index.php?pag=<?php echo $pag ?>&funcao=novo">+</a>
     
 </div>
@@ -24,7 +24,7 @@ require_once("../conexao.php");
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Cadastro</th>
+                        <th>CPF</th>
                         <th>Telefone</th>
                         <th>Email</th>                                           
                         <th>Ações</th>
@@ -35,7 +35,7 @@ require_once("../conexao.php");
 
                  <?php 
 
-                 $query = $pdo->query("SELECT * FROM alunos order by id desc ");
+                 $query = $pdo->query("SELECT * FROM professores order by id desc ");
                  $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
                  for ($i=0; $i < count($res); $i++) { 
@@ -43,7 +43,7 @@ require_once("../conexao.php");
                   }
 
                   $nome = $res[$i]['nome'];
-                  $cadastro = $res[$i]['cadastro'];
+                  $cpf = $res[$i]['cpf'];
                   $telefone = $res[$i]['telefone'];
                   $email = $res[$i]['email'];                  
                   $id = $res[$i]['id'];
@@ -54,7 +54,7 @@ require_once("../conexao.php");
 
                   <tr>
                     <td><?php echo $nome ?></td>
-                    <td><?php echo $cadastro ?></td>
+                    <td><?php echo $cpf ?></td>
                     <td><?php echo $telefone ?></td>
                     <td><?php echo $email ?></td>                  
                     
@@ -67,18 +67,11 @@ require_once("../conexao.php");
                    </td>
                </tr>
            <?php } ?>
-
-
-
-
-
        </tbody>
    </table>
 </div>
 </div>
 </div>
-
-
 
 
 
@@ -92,19 +85,18 @@ require_once("../conexao.php");
                     $titulo = "Editar Registro";
                     $id2 = $_GET['id'];
 
-                    $query = $pdo->query("SELECT * FROM alunos where id = '" . $id2 . "' ");
+                    $query = $pdo->query("SELECT * FROM professores where id = '" . $id2 . "' ");
                     $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
                     $nome2 = $res[0]['nome'];
-                    $cadastro2 = $res[0]['cadastro'];
+                    $cpf2 = $res[0]['cpf'];
                     $telefone2 = $res[0]['telefone'];
                     $email2 = $res[0]['email'];                    
                     
 
                 } else {
                     $titulo = "Inserir Registro";
-                    $data_nasc2 = date('Y-m-d');
-                }
+                    }
 
 
                 ?>
@@ -131,8 +123,8 @@ require_once("../conexao.php");
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label >Cadastro</label>
-                                    <input value="<?php echo @$cadastro2 ?>" type="text" class="form-control" id="cadastro" name="cadastro" placeholder="Cadastro">
+                                    <label >CPF</label>
+                                    <input value="<?php echo @$cpf2 ?>" type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF">
                                 </div>
 
                             </div>
@@ -174,7 +166,7 @@ require_once("../conexao.php");
 
 
     <input value="<?php echo @$_GET['id'] ?>" type="hidden" name="txtid2" id="txtid2">
-    <input value="<?php echo @$cadastro2 ?>" type="hidden" name="antigo" id="antigo">
+    <input value="<?php echo @$cpf2 ?>" type="hidden" name="antigo" id="antigo">
       
     <button type="button" id="btn-fechar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
     <button type="submit" name="btn-salvar" id="btn-salvar" class="btn btn-primary">Salvar</button>
