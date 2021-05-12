@@ -87,14 +87,10 @@ require_once("../conexao.php");
                                 <?php echo $notaF ?>
                                 <?php } ?>                            
                             </td>    
-							<td> 
-                            <?php if($nota != ""){  ?>                        
-					 		<a href="index.php?pag=<?php echo $pag ?>&funcao=editar&id_nota=<?php echo $id_nota ?>&id_turma=<?php echo $id_turma ?>&id_avaliacao=<?php echo $id_avaliacao ?>&id_aluno=<?php echo $id_aluno ?>" class='text-primary mr-1' title='Lançar notas'><i class='fas fa-pencil-alt '></i></a>							
-                                                       
-					 		<a href="index.php?pag=<?php echo $pag ?>&funcao=excluir&id=<?php echo $id_nota ?>" class='text-danger mr-1' title='Excluir notas'><i class='far fa-trash-alt '></i></a>
-                            <?php } ?>                            
-                            
-                             </td>                     
+							<td>                                                     
+					 		<a href="index.php?pag=<?php echo $pag ?>&funcao=editar&id_nota=<?php echo $id_nota ?>&id_turma=<?php echo $id_turma ?>&id_avaliacao=<?php echo $id_avaliacao ?>&id_aluno=<?php echo $id_aluno ?>" class='text-primary mr-1' title='Lançar notas'><i class='fas fa-pencil-alt '></i></a>
+					 		<a href="index.php?pag=<?php echo $pag ?>&funcao=excluir&id=<?php echo $id_nota ?>" class='text-danger mr-1' title='Excluir notas'><i class='far fa-trash-alt '></i></a>  
+                            </td>                     
 					 
 				 
 						</tr>
